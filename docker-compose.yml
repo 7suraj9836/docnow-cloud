@@ -1,0 +1,56 @@
+# version: '3'
+
+# services:
+#   backend:
+#     build: ./backend
+#     ports:
+#       - "5000:5000"
+#     env_file:
+#       - ./backend/.env
+#     depends_on:
+#       - mongo
+
+#   admin:
+#     build: ./admin
+#     ports:
+#       - "3001:80"
+
+#   frontend:
+#     build: ./frontend
+#     ports:
+#       - "3000:80"
+
+#   mongo:
+#     image: mongo
+#     ports:
+#       - "27017:27017"
+
+version: '3.8'
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - mongo
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./frontend/.env
+
+  admin:
+    build: ./admin
+    ports:
+      - "3001:3000"
+    env_file:
+      - ./admin/.env
+
+  mongo:
+    image: mongo:6
+    ports:
+      - "27017:27017"
